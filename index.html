@@ -14,4 +14,506 @@
       --accent-soft: rgba(37, 99, 235, 0.15);
       --text-main: #e5e7eb;
       --text-muted: #9ca3af;
-      --bor
+      --border-subtle: #1f2937;
+      --radius-lg: 18px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.65);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #1d2746 0, #020617 55%);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      padding: 1.2rem 1.3rem 0.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(2, 6, 23, 0.95),
+        rgba(2, 6, 23, 0.75),
+        transparent
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+    }
+
+    .nav-container {
+      max-width: 1040px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand-name {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .brand-tagline {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+      color: #cbd5f5;
+    }
+
+    nav a:hover {
+      border-color: rgba(148, 163, 184, 0.4);
+      background-color: rgba(15, 23, 42, 0.8);
+    }
+
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 1.5rem 1.3rem 3rem;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
+      gap: 2rem;
+      align-items: center;
+      margin: 0.5rem 0 2.5rem;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.1rem, 3.4vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(to right, #60a5fa, #a855f7, #f97316);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-body {
+      font-size: 0.98rem;
+      color: #d1d5db;
+      max-width: 34rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background-color: rgba(15, 23, 42, 0.7);
+      color: #cbd5f5;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      font-size: 0.88rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: white;
+      box-shadow: 0 16px 32px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-ghost {
+      border-color: rgba(148, 163, 184, 0.4);
+      background-color: rgba(15, 23, 42, 0.8);
+      color: #e5e7eb;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, #1f2937, #020617 60%);
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      padding: 1.25rem 1.3rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 2.4rem;
+    }
+
+    .section-header {
+      margin-bottom: 1.1rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .section-kicker {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .card {
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.9));
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1.1rem 1.2rem;
+      box-shadow: 0 16px 35px rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .muted {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .project-card .project-status {
+      display: inline-block;
+      font-size: 0.8rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background-color: var(--accent-soft);
+      color: #bfdbfe;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Resume */
+    .resume-box {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 1.2rem;
+    }
+
+    footer {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 1.1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="nav-container">
+      <div>
+        <div class="brand-name">KEVIN MUNOZ-RIVERA</div>
+        <div class="brand-tagline">Software · Game Dev · AI/ML (In Progress)</div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-text">
+        <div class="hero-sub">Aspiring Developer</div>
+        <h1>
+          Building my path in
+          <span class="hero-highlight">Software, Games, and AI</span>
+        </h1>
+
+        <p class="hero-body">
+          I’m Kevin Munoz-Rivera, a computer science student and Assistant Manager
+          who loves learning how systems work and turning ideas into working code.
+          I’m actively growing my skills in software development, game development,
+          and AI &amp; machine learning through coursework, practice, and projects
+          that are currently in progress.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn-primary" href="Resume.pdf" target="_blank">View Resume</a>
+          <a class="btn-ghost" href="#contact">Contact Me</a>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <h3>Snapshot</h3>
+        <p>Assistant Manager · CS Student</p>
+        <p class="muted">Since 2019 — 1915 KC House</p>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Who I Am</div>
+          <h2 class="section-title">About Me</h2>
+        </div>
+      </div>
+
+      <div class="card">
+        <p>
+          I’m Kevin Munoz-Rivera, an aspiring software developer currently studying
+          computer science and steadily building a strong foundation in programming,
+          problem-solving, and system design. I enjoy understanding how software
+          works behind the scenes and turning small ideas into working solutions.
+        </p>
+        <p>
+          I’m focused on improving my skills in Java, software development
+          principles, and version control with Git and GitHub. I’m especially interested
+          in software development, game development, and AI &amp; machine learning.
+        </p>
+        <p>
+          My projects are currently in progress and updated as I continue learning.
+          My long-term goal is to grow into a role in the tech industry and build real
+          software that has an impact.
+        </p>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">What I Work With</div>
+          <h2 class="section-title">Skills</h2>
+        </div>
+      </div>
+
+      <div class="card">
+        <p><strong>Languages:</strong> Java, Python (Beginner), HTML &amp; CSS (Beginner)</p>
+        <p><strong>Tools &amp; Workflow:</strong> Git, GitHub, IntelliJ IDEA, VS Code, Command Line (Basic)</p>
+        <p><strong>Coursework &amp; Concepts:</strong> CS Foundations, Discrete Structures,
+          Ethics &amp; Technology, Intro to Data Structures &amp; Algorithms</p>
+      </div>
+    </section>
+
+    <!-- PROJECTS (UPDATED WIP VERSION) -->
+    <section id="projects">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Work In Progress</div>
+          <h2 class="section-title">Projects (Work in Progress)</h2>
+        </div>
+        <div class="muted">
+          All projects are currently in progress. This section will be updated as I complete more work.
+        </div>
+      </div>
+
+      <div class="projects-grid">
+
+        <div class="card project-card">
+          <div class="project-status">Work in Progress</div>
+          <div class="project-title">Java Practice &amp; Algorithm Exercises</div>
+          <div class="project-tech">Technologies: Java, IntelliJ, Git</div>
+          <p>
+            A growing set of Java exercises focused on arrays, loops, data structures, and algorithmic thinking.
+            My goal is to improve clean code habits, debugging skills, and understanding of time complexity.
+          </p>
+        </div>
+
+        <div class="card project-card">
+          <div class="project-status">Planned · Work in Progress</div>
+          <div class="project-title">Software Tools &amp; Automation</div>
+          <div class="project-tech">Technologies: TBD</div>
+          <p>
+            A future project focused on creating small tools or scripts that automate tasks and connect
+            classroom learning with real-world applications.
+          </p>
+        </div>
+
+        <div class="card project-card">
+          <div class="project-status">Planned · Work in Progress</div>
+          <div class="project-title">Game Development Exploration</div>
+          <div class="project-tech">Technologies: TBD</div>
+          <p>
+            Early-stage exploration into basic game mechanics and interactive systems to learn game dev concepts
+            and create simple playable experiences.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Real-World Background</div>
+          <h2 class="section-title">Experience</h2>
+        </div>
+      </div>
+
+      <div class="card">
+        <p><strong>Assistant Manager – 1915 KC House</strong> (March 2019 – Present)</p>
+        <p class="muted">Leadership · Team Management · Customer Experience · Operations</p>
+
+        <p>
+          Oversee daily operations, supervise team members, and maintain a high level of customer service.
+          Responsibilities include training, scheduling, problem-solving under pressure, inventory management,
+          and operational planning. These skills transfer directly into my CS journey through teamwork, time
+          management, and structured problem-solving.
+        </p>
+      </div>
+    </section>
+
+    <!-- RESUME (UPDATED CLEAN VERSION) -->
+    <section id="resume">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Snapshot On Paper</div>
+          <h2 class="section-title">Resume</h2>
+        </div>
+      </div>
+
+      <div class="card resume-box">
+        <div>
+          <a class="btn-primary" href="Resume.pdf" target="_blank">View Resume (PDF)</a>
+        </div>
+
+        <p class="resume-note">
+          View or download my resume to see my education, skills, technical interests, and
+          my professional experience as an Assistant Manager at 1915 KC House.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Let's Connect</div>
+          <h2 class="section-title">Contact</h2>
+        </div>
+      </div>
+
+      <div class="card contact-grid">
+        <div>
+          <p><strong>Email:</strong> <a href="mailto:kevrivera2112@gmail.com">kevrivera2112@gmail.com</a></p>
+          <p class="muted">
+            Feel free to reach out regarding coursework, collaboration,
+            or future opportunities in software development, game development, or AI/ML.
+          </p>
+        </div>
+
+        <div>
+          <p><strong>Profiles:</strong></p>
+          <ul>
+            <li>
+              LinkedIn:
+              <a href="https://www.linkedin.com/in/kevin-munoz-rivera" target="_blank">
+                linkedin.com/in/kevin-munoz-rivera
+              </a>
+            </li>
+            <li>
+              GitHub:
+              <a href="https://github.com/kevinmrivera-cs" target="_blank">
+                github.com/kevinmrivera-cs
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> Kevin Munoz-Rivera · Built with HTML, CSS &amp; GitHub Pages
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>
