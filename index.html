@@ -1,567 +1,519 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Kevin Munoz-Rivera | Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Portfolio and resume of Kevin Munoz-Rivera, CS & Software student focused on software and game development.">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
     :root {
-      --bg: #0f172a;
-      --bg-alt: #020617;
-      --card: #020617;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.1);
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --border: #1e293b;
-      --shadow: 0 18px 45px rgba(15, 23, 42, 0.8);
+      --bg: #050816;
+      --bg-alt: #0f172a;
+      --card: #0b1220;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.15);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: #1f2937;
       --radius-lg: 18px;
-      --radius-pill: 999px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.65);
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      background: radial-gradient(circle at top, #1d2440 0, #020617 55%);
-      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #1d2746 0, #020617 55%);
+      color: var(--text-main);
+      line-height: 1.6;
       min-height: 100vh;
     }
 
     a {
-      color: inherit;
+      color: var(--accent);
       text-decoration: none;
     }
 
-    .page {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 32px 16px 64px;
+    a:hover {
+      text-decoration: underline;
     }
 
     header {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      margin-bottom: 32px;
-    }
-
-    .name-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      gap: 12px;
-    }
-
-    .name-row h1 {
-      font-size: clamp(2.1rem, 4vw, 2.8rem);
-      letter-spacing: 0.04em;
-    }
-
-    .name-row span {
-      font-size: 0.95rem;
-      padding: 4px 10px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: var(--muted);
-      background: rgba(15, 23, 42, 0.8);
-    }
-
-    .tagline {
-      font-size: 0.98rem;
-      color: var(--muted);
-      max-width: 620px;
-      line-height: 1.6;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.85rem;
-      padding: 4px 10px;
-      border-radius: var(--radius-pill);
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-    }
-
-    .chip-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
-    }
-
-    .contact-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 2px;
-      font-size: 0.92rem;
-    }
-
-    .contact-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--muted);
-    }
-
-    .contact-item span {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #6b7280;
-    }
-
-    .pill-link {
-      border-radius: var(--radius-pill);
-      padding: 8px 16px;
-      font-size: 0.88rem;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: rgba(15, 23, 42, 0.9);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--muted);
-    }
-
-    nav {
+      padding: 1.2rem 1.3rem 0.5rem;
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.96), rgba(2, 6, 23, 0.8));
-      backdrop-filter: blur(14px);
-      margin: 12px -16px 28px;
-      padding: 10px 16px 12px;
-      border-bottom: 1px solid rgba(30, 64, 175, 0.7);
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(2, 6, 23, 0.95),
+        rgba(2, 6, 23, 0.75),
+        transparent
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
     }
 
-    .nav-inner {
-      max-width: 960px;
+    .nav-container {
+      max-width: 1040px;
       margin: 0 auto;
       display: flex;
-      justify-content: space-between;
-      gap: 12px;
       align-items: center;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
     }
 
-    .nav-links {
+    .brand-name {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .brand-tagline {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    nav ul {
+      list-style: none;
       display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
       flex-wrap: wrap;
-      gap: 8px;
-      font-size: 0.86rem;
     }
 
-    .nav-links a {
-      padding: 6px 12px;
-      border-radius: var(--radius-pill);
-      color: var(--muted);
+    nav a {
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
       border: 1px solid transparent;
+      transition: 0.2s ease;
+      color: #cbd5f5;
     }
 
-    .nav-links a:hover {
-      border-color: rgba(148, 163, 184, 0.6);
-      color: #e5e7eb;
-      background: rgba(15, 23, 42, 0.9);
+    nav a:hover {
+      border-color: rgba(148, 163, 184, 0.4);
+      background-color: rgba(15, 23, 42, 0.8);
     }
 
     main {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 1.5rem 1.3rem 3rem;
     }
 
-    section {
-      background: linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.92));
-      border-radius: var(--radius-lg);
-      padding: 18px 18px 20px;
-      border: 1px solid rgba(30, 64, 175, 0.75);
-      box-shadow: var(--shadow);
-    }
-
-    section h2 {
-      font-size: 1.05rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    .section-header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .section-subtitle {
-      font-size: 0.85rem;
-      color: #6b7280;
-    }
-
-    p {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: var(--text);
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    ul {
-      list-style: none;
-      margin-top: 4px;
-    }
-
-    li {
-      position: relative;
-      padding-left: 16px;
-      margin-bottom: 4px;
-      font-size: 0.94rem;
-      line-height: 1.6;
-    }
-
-    li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: var(--accent);
-      font-size: 1rem;
-    }
-
-    .two-col {
+    /* HERO */
+    .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
-      gap: 18px;
-      margin-top: 4px;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
+      gap: 2rem;
+      align-items: center;
+      margin: 0.5rem 0 2.5rem;
     }
 
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 8px;
+    .hero-text h1 {
+      font-size: clamp(2.1rem, 3.4vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: 0.6rem;
     }
 
-    .badge {
-      padding: 4px 9px;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--muted);
-      background: rgba(15, 23, 42, 0.9);
+    .hero-highlight {
+      background: linear-gradient(to right, #60a5fa, #a855f7, #f97316);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .job-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 2px;
+    .hero-sub {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.9rem;
     }
 
-    .job-title {
-      font-weight: 600;
+    .hero-body {
       font-size: 0.98rem;
+      color: #d1d5db;
+      max-width: 34rem;
+      margin-bottom: 1.2rem;
     }
 
-    .job-meta {
-      font-size: 0.86rem;
-      color: var(--muted);
+    .hero-tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background-color: rgba(15, 23, 42, 0.7);
+      color: #cbd5f5;
     }
 
-    .resume-actions {
+    .hero-actions {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      font-size: 0.88rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: 0.2s ease;
     }
 
     .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 9px 16px;
-      border-radius: var(--radius-pill);
-      border: none;
-      background: linear-gradient(135deg, var(--accent), #0ea5e9);
-      color: #0f172a;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .btn-primary span {
-      font-size: 1.05rem;
-      line-height: 1;
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: white;
+      box-shadow: 0 16px 32px rgba(37, 99, 235, 0.45);
     }
 
     .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 14px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--muted);
+      border-color: rgba(148, 163, 184, 0.4);
+      background-color: rgba(15, 23, 42, 0.8);
+      color: #e5e7eb;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, #1f2937, #020617 60%);
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      padding: 1.25rem 1.3rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 2.4rem;
+    }
+
+    .section-header {
+      margin-bottom: 1.1rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .section-kicker {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .card {
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.9));
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1.1rem 1.2rem;
+      box-shadow: 0 16px 35px rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .muted {
+      color: var(--text-muted);
       font-size: 0.88rem;
-      text-decoration: none;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .project-card .project-status {
+      display: inline-block;
+      font-size: 0.8rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background-color: var(--accent-soft);
+      color: #bfdbfe;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Resume */
+    .resume-box {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 1.2rem;
     }
 
     footer {
-      margin-top: 30px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 1.1rem;
       text-align: center;
       font-size: 0.8rem;
-      color: #6b7280;
+      color: var(--text-muted);
     }
 
-    @media (max-width: 720px) {
-      .two-col {
-        grid-template-columns: 1fr;
-      }
-      section {
-        padding: 16px 14px 18px;
-      }
-    }
   </style>
 </head>
+
 <body>
-  <div class="page">
-    <header>
-      <div class="name-row">
-        <h1>Kevin Munoz-Rivera</h1>
-        <span>CS &amp; Software B.A. Student · UW Tacoma</span>
+
+  <header>
+    <div class="nav-container">
+      <div>
+        <div class="brand-name">KEVIN MUNOZ-RIVERA</div>
+        <div class="brand-tagline">Software · Game Dev · AI/ML (In Progress)</div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-text">
+        <div class="hero-sub">Aspiring Developer</div>
+        <h1>
+          Building my path in
+          <span class="hero-highlight">Software, Games, and AI</span>
+        </h1>
+
+        <p class="hero-body">
+          I’m Kevin Munoz-Rivera, a computer science student and Assistant Manager
+          who loves learning how systems work and turning ideas into working code.
+          I’m actively growing my skills in software development, game development,
+          and AI &amp; machine learning through coursework, practice, and projects
+          that are currently in progress.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn-primary" href="Resume.pdf" target="_blank">View Resume</a>
+          <a class="btn-ghost" href="#contact">Contact Me</a>
+        </div>
       </div>
 
-      <div class="tagline">
+      <aside class="hero-card">
+        <h3>Snapshot</h3>
+        <p>Assistant Manager · CS Student</p>
+        <p class="muted">Since 2019 — 1915 KC House</p>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Who I Am</div>
+          <h2 class="section-title">About Me</h2>
+        </div>
+      </div>
+
+      <div class="card">
         <p>
-          I’m a Computer Science &amp; Software major focused on Java, OOP, and data structures.
-          I enjoy turning ideas into working applications and games, and I bring 5+ years of
-          leadership experience improving workflows and helping teams perform better.
+          I’m Kevin Munoz-Rivera, an aspiring software developer currently studying
+          computer science and steadily building a strong foundation in programming,
+          problem-solving, and system design. I enjoy understanding how software
+          works behind the scenes and turning small ideas into working solutions.
         </p>
-      </div>
-
-      <div class="contact-bar">
-        <div class="chip">
-          <div class="chip-dot"></div>
-          <span>Open to</span> Software &amp; Game Dev Opportunities
-        </div>
-      </div>
-
-      <div class="contact-bar">
-        <div class="contact-item">
-          <span>Email</span> <a href="mailto:kevrivera2112@gmail.com">kevrivera2112@gmail.com</a>
-        </div>
-        <div class="contact-item">
-          <span>Phone</span> <a href="tel:+12067245427">(206) 724-5427</a>
-        </div>
-        <a class="pill-link" href="https://www.linkedin.com/in/kevin-munoz-rivera" target="_blank" rel="noopener">
-          LinkedIn
-        </a>
-        <!-- Optional: update this with your GitHub profile if you want -->
-        <a class="pill-link" href="https://github.com/kevinmrivera-cs" target="_blank" rel="noopener">
-          GitHub
-        </a>
-      </div>
-    </header>
-
-    <nav>
-      <div class="nav-inner">
-        <div class="nav-links">
-          <a href="#about">About</a>
-          <a href="#education">Education</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#experience">Experience</a>
-          <a href="#resume">Resume</a>
-        </div>
-      </div>
-    </nav>
-
-    <main>
-      <!-- ABOUT / SUMMARY -->
-      <section id="about">
-        <div class="section-header-row">
-          <h2>About</h2>
-          <div class="section-subtitle">Background &amp; goals</div>
-        </div>
         <p>
-          I’m currently studying Computer Science &amp; Software at the University of Washington Tacoma
-          with a minor in Business Administration. On the technical side, I’m building a strong
-          foundation in programming, data structures, and software design. On the business side,
-          I’m learning how products and strategy come together in real organizations.
+          I’m focused on improving my skills in Java, software development
+          principles, and version control with Git and GitHub. I’m especially interested
+          in software development, game development, and AI &amp; machine learning.
         </p>
-        <p style="margin-top: 8px;">
-          My long-term goal is to work in software or game development where I can combine hands-on coding
-          with leadership experience—helping teams ship tools, apps, or games that are fun to use and
-          actually solve real problems.
+        <p>
+          My projects are currently in progress and updated as I continue learning.
+          My long-term goal is to grow into a role in the tech industry and build real
+          software that has an impact.
         </p>
-      </section>
+      </div>
+    </section>
 
-      <!-- EDUCATION -->
-      <section id="education">
-        <div class="section-header-row">
-          <h2>Education</h2>
-          <div class="section-subtitle">University &amp; coursework</div>
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">What I Work With</div>
+          <h2 class="section-title">Skills</h2>
         </div>
-        <p><strong>University of Washington Tacoma</strong> — B.A. Computer Science &amp; Software (Expected 2026)</p>
-        <p class="muted" style="margin-top: 4px;">
-          Minor: Business Administration
-        </p>
-        <p style="margin-top: 8px;">
-          <strong>Relevant Coursework:</strong> Data Structures, Object-Oriented Programming (OOP), Software Design
-        </p>
-      </section>
+      </div>
 
-      <!-- SKILLS -->
-      <section id="skills">
-        <div class="section-header-row">
-          <h2>Skills</h2>
-          <div class="section-subtitle">Technical &amp; professional strengths</div>
+      <div class="card">
+        <p><strong>Languages:</strong> Java, Python (Beginner), HTML &amp; CSS (Beginner)</p>
+        <p><strong>Tools &amp; Workflow:</strong> Git, GitHub, IntelliJ IDEA, VS Code, Command Line (Basic)</p>
+        <p><strong>Coursework &amp; Concepts:</strong> CS Foundations, Discrete Structures,
+          Ethics &amp; Technology, Intro to Data Structures &amp; Algorithms</p>
+      </div>
+    </section>
+
+    <!-- PROJECTS (UPDATED WIP VERSION) -->
+    <section id="projects">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Work In Progress</div>
+          <h2 class="section-title">Projects (Work in Progress)</h2>
         </div>
-
-        <div class="two-col">
-          <div>
-            <p class="muted"><strong>Technical Skills</strong></p>
-            <ul>
-              <li>Java: OOP, data structures, algorithms, and debugging</li>
-              <li>Building interactive console-based applications and games</li>
-              <li>File I/O and working with arrays, ArrayLists, and input validation</li>
-            </ul>
-            <div class="badge-row">
-              <span class="badge">Java</span>
-              <span class="badge">OOP</span>
-              <span class="badge">Data Structures</span>
-              <span class="badge">Algorithms</span>
-            </div>
-          </div>
-
-          <div>
-            <p class="muted"><strong>Professional Skills</strong></p>
-            <ul>
-              <li>Leadership and training frontline teams</li>
-              <li>Communication and conflict resolution in fast-paced environments</li>
-              <li>Time management, adaptability, and workflow improvement</li>
-            </ul>
-            <div class="badge-row">
-              <span class="badge">Leadership</span>
-              <span class="badge">Team Collaboration</span>
-              <span class="badge">Time Management</span>
-              <span class="badge">Adaptability</span>
-            </div>
-          </div>
+        <div class="muted">
+          All projects are currently in progress. This section will be updated as I complete more work.
         </div>
-      </section>
+      </div>
 
-      <!-- PROJECTS -->
-      <section id="projects">
-        <div class="section-header-row">
-          <h2>Projects</h2>
-          <div class="section-subtitle">Java games &amp; practice work</div>
+      <div class="projects-grid">
+
+        <div class="card project-card">
+          <div class="project-status">Work in Progress</div>
+          <div class="project-title">Java Practice &amp; Algorithm Exercises</div>
+          <div class="project-tech">Technologies: Java, IntelliJ, Git</div>
+          <p>
+            A growing set of Java exercises focused on arrays, loops, data structures, and algorithmic thinking.
+            My goal is to improve clean code habits, debugging skills, and understanding of time complexity.
+          </p>
         </div>
 
-        <p class="muted" style="margin-bottom: 8px;">
-          These are practice projects built as part of my coursework and self-study.
-          More projects with GitHub links are in progress.
-        </p>
-
-        <div style="margin-top: 4px;">
-          <p><strong>Where’s Waldo — Java (Text-Based Game)</strong></p>
-          <ul>
-            <li>Created a randomized search game using arrays, loops, and object-oriented design.</li>
-            <li>Implemented input validation, win/lose states, and multiple rounds for replayability.</li>
-            <li>Focused on clean class structure and clear game feedback for the player.</li>
-          </ul>
+        <div class="card project-card">
+          <div class="project-status">Planned · Work in Progress</div>
+          <div class="project-title">Software Tools &amp; Automation</div>
+          <div class="project-tech">Technologies: TBD</div>
+          <p>
+            A future project focused on creating small tools or scripts that automate tasks and connect
+            classroom learning with real-world applications.
+          </p>
         </div>
 
-        <div style="margin-top: 10px;">
-          <p><strong>Word Guessing Game — Java</strong></p>
-          <ul>
-            <li>Loaded words from a text file into an <code>ArrayList</code> and selected a random word each game.</li>
-            <li>Used a <code>char[]</code> to reveal correct letters, track remaining attempts, and block duplicate guesses.</li>
-            <li>Practiced problem-solving with loops, conditionals, and state tracking in Java.</li>
-          </ul>
+        <div class="card project-card">
+          <div class="project-status">Planned · Work in Progress</div>
+          <div class="project-title">Game Development Exploration</div>
+          <div class="project-tech">Technologies: TBD</div>
+          <p>
+            Early-stage exploration into basic game mechanics and interactive systems to learn game dev concepts
+            and create simple playable experiences.
+          </p>
         </div>
 
-        <p class="muted" style="margin-top: 10px; font-size: 0.88rem;">
-          More projects coming soon — this section is a work in progress as I build and push new code to GitHub.
-        </p>
-      </section>
+      </div>
+    </section>
 
-      <!-- EXPERIENCE -->
-      <section id="experience">
-        <div class="section-header-row">
-          <h2>Experience</h2>
-          <div class="section-subtitle">Leadership &amp; operations</div>
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Real-World Background</div>
+          <h2 class="section-title">Experience</h2>
+        </div>
+      </div>
+
+      <div class="card">
+        <p><strong>Assistant Manager – 1915 KC House</strong> (March 2019 – Present)</p>
+        <p class="muted">Leadership · Team Management · Customer Experience · Operations</p>
+
+        <p>
+          Oversee daily operations, supervise team members, and maintain a high level of customer service.
+          Responsibilities include training, scheduling, problem-solving under pressure, inventory management,
+          and operational planning. These skills transfer directly into my CS journey through teamwork, time
+          management, and structured problem-solving.
+        </p>
+      </div>
+    </section>
+
+    <!-- RESUME (UPDATED CLEAN VERSION) -->
+    <section id="resume">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Snapshot On Paper</div>
+          <h2 class="section-title">Resume</h2>
+        </div>
+      </div>
+
+      <div class="card resume-box">
+        <div>
+          <a class="btn-primary" href="Resume.pdf" target="_blank">View Resume (PDF)</a>
+        </div>
+
+        <p class="resume-note">
+          View or download my resume to see my education, skills, technical interests, and
+          my professional experience as an Assistant Manager at 1915 KC House.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Let's Connect</div>
+          <h2 class="section-title">Contact</h2>
+        </div>
+      </div>
+
+      <div class="card contact-grid">
+        <div>
+          <p><strong>Email:</strong> <a href="mailto:kevrivera2112@gmail.com">kevrivera2112@gmail.com</a></p>
+          <p class="muted">
+            Feel free to reach out regarding coursework, collaboration,
+            or future opportunities in software development, game development, or AI/ML.
+          </p>
         </div>
 
         <div>
-          <div class="job-header">
-            <div>
-              <div class="job-title">Assistant Manager — 1915 KC House</div>
-              <div class="muted">SeaTac, WA</div>
-            </div>
-            <div class="job-meta">Mar 2019 – Present</div>
-          </div>
-
-          <ul style="margin-top: 4px;">
-            <li>Reduced closing time by up to 60 minutes by improving workflows and adjusting schedules.</li>
-            <li>Trained and mentored 15+ employees, supporting performance and team retention.</li>
-            <li>Managed inventory, supply flow, and vendor coordination to keep operations running smoothly.</li>
-            <li>Helped shift the workplace from a toxic environment to a more collaborative culture, improving morale and efficiency.</li>
+          <p><strong>Profiles:</strong></p>
+          <ul>
+            <li>
+              LinkedIn:
+              <a href="https://www.linkedin.com/in/kevin-munoz-rivera" target="_blank">
+                linkedin.com/in/kevin-munoz-rivera
+              </a>
+            </li>
+            <li>
+              GitHub:
+              <a href="https://github.com/kevinmrivera-cs" target="_blank">
+                github.com/kevinmrivera-cs
+              </a>
+            </li>
           </ul>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- RESUME -->
-      <section id="resume">
-        <div class="section-header-row">
-          <h2>Resume</h2>
-          <div class="section-subtitle">Download or view the full document</div>
-        </div>
+  </main>
 
-        <p>
-          You can download my latest résumé as a PDF or connect with me on LinkedIn to see more details
-          about my experience, skills, and projects.
-        </p>
-
-        <div class="resume-actions">
-          <a class="btn-primary" href="Resume.pdf" target="_blank" rel="noopener">
-            <span>⬇</span> Download Resume (PDF
-          </a>
-          <a class="btn-ghost" href="https://www.linkedin.com/in/kevin-munoz-rivera" target="_blank" rel="noopener">
-            View on LinkedIn
-          </a>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      © <span id="year"></span> Kevin Munoz-Rivera. Built with GitHub Pages.
-    </footer>
-  </div>
+  <footer>
+    &copy; <span id="year"></span> Kevin Munoz-Rivera · Built with HTML, CSS &amp; GitHub Pages
+  </footer>
 
   <script>
-    // Update footer year automatically
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
+
 </html>
