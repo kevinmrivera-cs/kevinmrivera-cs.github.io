@@ -8,6 +8,7 @@
   <style>
     :root {
       --bg: #050816;
+      --bg-alt: #0f172a;
       --card: #0b1220;
       --accent: #2563eb;
       --accent-soft: rgba(37, 99, 235, 0.15);
@@ -18,9 +19,8 @@
       --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.65);
     }
 
-    * { margin:0; padding:0; box-sizing:border-box; }
-
-    html { scroll-behavior:smooth; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -30,289 +30,573 @@
       min-height: 100vh;
     }
 
-    a { color: var(--accent); text-decoration:none; }
-    a:hover { text-decoration:underline; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
     header {
-      padding:1.2rem 1.3rem 0.5rem;
-      position:sticky;
-      top:0;
-      z-index:20;
-      backdrop-filter:blur(18px);
-      background:linear-gradient(to bottom, rgba(2,6,23,.95), rgba(2,6,23,.75), transparent);
-      border-bottom:1px solid rgba(148,163,184,.18);
+      padding: 1.2rem 1.3rem 0.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(2, 6, 23, 0.95),
+        rgba(2, 6, 23, 0.75),
+        transparent
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
     }
 
     .nav-container {
-      max-width:1040px;
-      margin:0 auto;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:1rem;
+      max-width: 1040px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
     }
 
-    .brand-name { font-weight:700; letter-spacing:.04em; font-size:1rem; text-transform:uppercase; }
-    .brand-tagline { font-size:.8rem; color:var(--text-muted); }
+    .brand-name {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
 
-    nav ul { list-style:none; display:flex; gap:1rem; font-size:.9rem; flex-wrap:wrap; }
+    .brand-tagline {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
+      flex-wrap: wrap;
+    }
 
     nav a {
-      padding:.35rem .7rem;
-      border-radius:999px;
-      border:1px solid transparent;
-      transition:.2s ease;
-      color:#cbd5f5;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+      color: #cbd5f5;
     }
 
     nav a:hover {
-      border-color:rgba(148,163,184,.4);
-      background-color:rgba(15,23,42,.8);
+      border-color: rgba(148, 163, 184, 0.4);
+      background-color: rgba(15, 23, 42, 0.8);
     }
 
-    main { max-width:1040px; margin:0 auto; padding:1.5rem 1.3rem 3rem; }
-
-    section { margin-bottom:2.4rem; }
-
-    .section-header {
-      margin-bottom:1.1rem;
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap:1rem;
-      flex-wrap:wrap;
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 1.5rem 1.3rem 3rem;
     }
 
-    .section-title { font-size:1.3rem; font-weight:600; text-transform:uppercase; }
-    .section-kicker { font-size:.8rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:.16em; }
-
-    .card {
-      background:linear-gradient(145deg, rgba(15,23,42,.98), rgba(15,23,42,.9));
-      border-radius:var(--radius-lg);
-      padding:1.1rem 1.1rem 1.2rem;
-      box-shadow:0 16px 35px rgba(15,23,42,.8);
-      border:1px solid var(--border-subtle);
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
+      gap: 2rem;
+      align-items: center;
+      margin: 0.5rem 0 2.5rem;
     }
 
-    .muted { color:var(--text-muted); font-size:.88rem; }
-
-    .hero { display:grid; grid-template-columns:minmax(0,2fr) minmax(0,1.3fr); gap:2rem; align-items:center; margin:.5rem 0 2.5rem; }
-
-    .hero-text h1 { font-size:clamp(2.1rem,3.4vw,2.8rem); font-weight:800; margin-bottom:.6rem; }
+    .hero-text h1 {
+      font-size: clamp(2.1rem, 3.4vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+    }
 
     .hero-highlight {
-      background:linear-gradient(to right,#60a5fa,#a855f7,#f97316);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
+      background: linear-gradient(to right, #60a5fa, #a855f7, #f97316);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .hero-sub { font-size:.9rem; text-transform:uppercase; color:var(--text-muted); margin-bottom:.9rem; }
-    .hero-body { font-size:.98rem; color:#d1d5db; max-width:34rem; margin-bottom:1.2rem; }
+    .hero-sub {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.9rem;
+    }
 
-    .hero-actions { display:flex; gap:.7rem; margin-top:1rem; flex-wrap:wrap; }
+    .hero-body {
+      font-size: 0.98rem;
+      color: #d1d5db;
+      max-width: 34rem;
+      margin-bottom: 1.2rem;
+    }
 
-    .btn-primary, .btn-ghost {
-      font-size:.88rem;
-      padding:.6rem 1.1rem;
-      border-radius:999px;
-      border:1px solid transparent;
-      cursor:pointer;
-      display:inline-flex;
-      align-items:center;
-      gap:.35rem;
-      transition:.2s ease;
+    .hero-actions {
+      display: flex;
+      gap: 0.7rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      font-size: 0.88rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: 0.2s ease;
     }
 
     .btn-primary {
-      background:linear-gradient(135deg,#2563eb,#4f46e5);
-      color:white;
-      box-shadow:0 16px 32px rgba(37,99,235,.45);
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: white;
+      box-shadow: 0 16px 32px rgba(37, 99, 235, 0.45);
     }
 
     .btn-ghost {
-      border-color:rgba(148,163,184,.4);
-      background-color:rgba(15,23,42,.8);
-      color:#e5e7eb;
+      border-color: rgba(148, 163, 184, 0.4);
+      background-color: rgba(15, 23, 42, 0.8);
+      color: #e5e7eb;
     }
 
     .hero-card {
-      background:radial-gradient(circle at top left,#1f2937,#020617 60%);
-      border-radius:24px;
-      border:1px solid rgba(148,163,184,.25);
-      padding:1.25rem 1.3rem;
-      box-shadow:var(--shadow-soft);
+      background: radial-gradient(circle at top left, #1f2937, #020617 60%);
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      padding: 1.25rem 1.3rem;
+      box-shadow: var(--shadow-soft);
     }
 
-    .profile-wrap { display:flex; gap:.9rem; align-items:center; margin:.9rem 0 .7rem; padding:.8rem; border-radius:16px; border:1px solid rgba(148,163,184,.18); background:rgba(15,23,42,.55); }
+    .profile-wrap {
+      display: flex;
+      gap: 0.9rem;
+      align-items: center;
+      margin: 0.9rem 0 0.7rem;
+      padding: 0.8rem;
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      background: rgba(15, 23, 42, 0.55);
+    }
 
     .profile-pic {
-      width:72px; height:72px; border-radius:18px;
-      object-fit:cover; border:1px solid rgba(148,163,184,.28);
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      object-fit: cover;
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      box-shadow: 0 14px 28px rgba(2, 6, 23, 0.55);
+      flex: 0 0 auto;
     }
 
-    .projects-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
-
-    .project-status {
-      display:inline-block;
-      font-size:.8rem;
-      padding:.2rem .6rem;
-      border-radius:999px;
-      background-color:var(--accent-soft);
-      color:#bfdbfe;
-      margin-bottom:.5rem;
+    .profile-meta strong {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 0.15rem;
     }
 
-    .project-title { font-weight:600; margin-bottom:.25rem; }
-    .project-tech { font-size:.82rem; color:var(--text-muted); margin-bottom:.45rem; }
+    .profile-meta span {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
 
-    .resume-box { display:flex; gap:1rem; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+    section { margin-bottom: 2.4rem; }
 
-    .contact-grid { display:grid; grid-template-columns:minmax(0,2fr) minmax(0,1.4fr); gap:1.2rem; }
+    .section-header {
+      margin-bottom: 1.1rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
 
-    footer { border-top:1px solid rgba(31,41,55,.9); padding:1.1rem; text-align:center; font-size:.8rem; color:var(--text-muted); }
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
 
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr;}
-      .projects-grid{grid-template-columns:1fr;}
-      .contact-grid{grid-template-columns:1fr;}
+    .section-kicker {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .card {
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.9));
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1.1rem 1.2rem;
+      box-shadow: 0 16px 35px rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .muted {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .project-card .project-status {
+      display: inline-block;
+      font-size: 0.8rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background-color: var(--accent-soft);
+      color: #bfdbfe;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-title {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .project-tech {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 0.45rem;
+    }
+
+    .resume-box {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 1.2rem;
+    }
+
+    footer {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 1.1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .section-header .muted { text-align: left !important; max-width: 100% !important; }
     }
   </style>
 </head>
 
 <body>
-
-<header>
-  <div class="nav-container">
-    <div>
-      <div class="brand-name">KEVIN MUNOZ-RIVERA</div>
-      <div class="brand-tagline">Software · Game Dev · AI/ML</div>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#certificates">Certificates</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#resume">Resume</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<main>
-
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-sub">Aspiring Developer</div>
-    <h1>Building my path in <span class="hero-highlight">Software, Games, and AI</span></h1>
-    <p class="hero-body">
-      I’m Kevin Munoz-Rivera, a computer science student and Assistant Manager passionate about building clean, structured software solutions.
-    </p>
-    <div class="hero-actions">
-      <a class="btn-primary" href="Resume.pdf" target="_blank">View Resume</a>
-      <a class="btn-ghost" href="#contact">Contact Me</a>
-    </div>
-  </div>
-
-  <aside class="hero-card">
-    <h3>Snapshot</h3>
-    <p>Assistant Manager · CS Student</p>
-    <p class="muted">Since 2019 — 1915 KC House</p>
-    <div class="profile-wrap">
-      <img class="profile-pic" src="Images/profile.jpeg" alt="Profile photo">
+  <header>
+    <div class="nav-container">
       <div>
-        <strong>Kevin Munoz-Rivera</strong>
-        <div class="muted">UW Tacoma · CS & Software Engineering</div>
+        <div class="brand-name">KEVIN MUNOZ-RIVERA</div>
+        <div class="brand-tagline">Software · Game Dev · AI/ML</div>
       </div>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#certificates">Certificates</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
-  </aside>
-</section>
+  </header>
 
-<section id="projects">
-  <div class="section-header">
-    <h2 class="section-title">Projects</h2>
-    <div class="muted">Showcasing coursework and game-based logic implementations.</div>
-  </div>
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <div class="hero-sub">Aspiring Developer</div>
+        <h1>
+          Building my path in
+          <span class="hero-highlight">Software, Games, and AI</span>
+        </h1>
 
-  <div class="projects-grid">
+        <p class="hero-body">
+          I’m Kevin Munoz-Rivera, a computer science student and Assistant Manager
+          who loves learning how systems work and turning ideas into working code.
+          I’m actively growing my skills in software development, game development,
+          and AI &amp; machine learning through coursework, practice, and projects
+          that are currently in progress.
+        </p>
 
-    <div class="card">
-      <div class="project-status">Course Project</div>
-      <div class="project-title">Craps Dice Game</div>
-      <div class="project-tech">Java · JUnit · GUI</div>
-      <p>Java implementation of Craps with structured game logic and unit testing.</p>
-      <div class="hero-actions">
-        <a class="btn-ghost" href="https://github.com/kevinmrivera-cs/Craps_Game" target="_blank">View Repo</a>
+        <div class="hero-actions">
+          <a class="btn-primary" href="Resume.pdf" target="_blank" rel="noopener noreferrer">View Resume</a>
+          <a class="btn-ghost" href="#contact">Contact Me</a>
+        </div>
       </div>
-    </div>
 
-    <div class="card">
-      <div class="project-status">Course Project</div>
-      <div class="project-title">Where’s Waldo Game</div>
-      <div class="project-tech">Java · OOP</div>
-      <p>Console-based structured logic game focusing on object-oriented design.</p>
-      <div class="hero-actions">
-        <a class="btn-ghost" href="https://github.com/kevinmrivera-cs/WaldoGame" target="_blank">View Repo</a>
+      <aside class="hero-card">
+        <h3>Snapshot</h3>
+        <p>Assistant Manager · CS Student</p>
+        <p class="muted">Since 2019 — 1915 KC House</p>
+
+        <div class="profile-wrap">
+          <img class="profile-pic" src="Images/profile.jpeg" alt="Profile photo of Kevin Munoz-Rivera" />
+          <div class="profile-meta">
+            <strong>Kevin Munoz-Rivera</strong>
+            <span>Java · JUnit · GUI · GitHub</span>
+            <span>UW Tacoma · CS &amp; Software Engineering</span>
+          </div>
+        </div>
+
+        <p class="muted">
+          Building projects with clean logic, testing, and simple UI.
+        </p>
+      </aside>
+    </section>
+
+    <section id="about">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Who I Am</div>
+          <h2 class="section-title">About Me</h2>
+        </div>
       </div>
-    </div>
 
-    <div class="card">
-      <div class="project-status">Course Project</div>
-      <div class="project-title">Word Guessing Game</div>
-      <div class="project-tech">Java · Logic</div>
-      <p>Game practicing loops, validation, and structured input handling.</p>
-      <div class="hero-actions">
-        <a class="btn-ghost" href="https://github.com/kevinmrivera-cs/GuessAWordGame" target="_blank">View Repo</a>
+      <div class="card">
+        <p>
+          I’m Kevin Munoz-Rivera, an aspiring software developer currently studying
+          computer science and steadily building a strong foundation in programming,
+          problem-solving, and system design. I enjoy understanding how software
+          works behind the scenes and turning small ideas into working solutions.
+        </p>
+        <p>
+          I’m focused on improving my skills in Java, software development
+          principles, and version control with Git and GitHub. I’m especially interested
+          in software development, game development, and AI &amp; machine learning.
+        </p>
+        <p>
+          My projects are updated as I continue learning. My long-term goal is to grow
+          into a role in the tech industry and build real software that has an impact.
+        </p>
       </div>
-    </div>
+    </section>
 
-    <div class="card">
-      <div class="project-status">Course Project</div>
-      <div class="project-title">Pig Dice Game</div>
-      <div class="project-tech">Java · Control Flow</div>
-      <p>Turn-based dice game focused on condition logic and state management.</p>
-      <div class="hero-actions">
-        <a class="btn-ghost" href="https://github.com/kevinmrivera-cs/Pig-Game" target="_blank">View Repo</a>
+    <section id="skills">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">What I Work With</div>
+          <h2 class="section-title">Skills</h2>
+        </div>
       </div>
-    </div>
 
-  </div>
-</section>
+      <div class="card">
+        <p><strong>Languages:</strong> Java, Python, HTML &amp; CSS</p>
+        <p><strong>Tools &amp; Workflow:</strong> Git, GitHub, IntelliJ IDEA</p>
+        <p><strong>Coursework &amp; Concepts:</strong> CS Foundations, Discrete Structures, Data Structures &amp; Algorithms</p>
+      </div>
+    </section>
 
-<section id="certificates">
-  <div class="section-header">
-    <h2 class="section-title">Certificates</h2>
-    <div class="muted">Competitions and achievements supporting my growth.</div>
-  </div>
-  <div class="card">
-    <div class="project-status">Competition</div>
-    <div class="project-title">ICPC Autumn 2026</div>
-    <p>Participated in competitive programming contest strengthening speed and problem-solving under pressure.</p>
-  </div>
-</section>
+    <section id="projects">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Projects</h2>
+        </div>
+        <div class="muted" style="max-width: 520px; text-align: right;">
+          Here is my showcase of my projects that I have worked on to show my ability.
+        </div>
+      </div>
 
-<section id="contact">
-  <div class="section-header">
-    <h2 class="section-title">Contact</h2>
-  </div>
-  <div class="card">
-    <p>Email: <a href="mailto:kevrivera2112@gmail.com">kevrivera2112@gmail.com</a></p>
-    <p>GitHub: <a href="https://github.com/kevinmrivera-cs" target="_blank">github.com/kevinmrivera-cs</a></p>
-  </div>
-</section>
+      <div class="projects-grid">
+        <div class="card project-card">
+          <div class="project-status">Course Project</div>
+          <div class="project-title">Craps Dice Game</div>
+          <div class="project-tech">Java · JUnit · GUI · IntelliJ · GitHub</div>
+          <p>
+            A Java-based implementation of the Craps dice game built for a course assignment.
+            Includes unit tests using JUnit to validate core game logic and outcomes.
+          </p>
+          <div class="hero-actions" style="margin-top: 0.6rem;">
+            <a class="btn-ghost" href="https://github.com/kevinmrivera-cs/Craps_Game" target="_blank" rel="noopener noreferrer">View Repo</a>
+          </div>
+        </div>
 
-</main>
+        <div class="card project-card">
+          <div class="project-status">Course Project</div>
+          <div class="project-title">Where’s Waldo (Text Adventure)</div>
+          <div class="project-tech">Java · OOP · Problem Solving · GitHub</div>
+          <p>
+            A Java-based text adventure style game focused on structured logic and
+            object-oriented design through console-based gameplay.
+          </p>
+          <div class="hero-actions" style="margin-top: 0.6rem;">
+            <a class="btn-ghost" href="https://github.com/kevinmrivera-cs/WaldoGame" target="_blank" rel="noopener noreferrer">View Repo</a>
+          </div>
+        </div>
 
-<footer>
-  &copy; <span id="year"></span> Kevin Munoz-Rivera · Built with HTML, CSS & GitHub Pages
-</footer>
+        <div class="card project-card">
+          <div class="project-status">Course Project</div>
+          <div class="project-title">Word Guessing Game</div>
+          <div class="project-tech">Java · Arrays/Lists · Logic · GitHub</div>
+          <p>
+            A word-guessing game built to practice loops, collections, input validation,
+            and structured game logic with clean coding habits.
+          </p>
+          <div class="hero-actions" style="margin-top: 0.6rem;">
+            <a class="btn-ghost" href="https://github.com/kevinmrivera-cs/GuessAWordGame" target="_blank" rel="noopener noreferrer">View Repo</a>
+          </div>
+        </div>
 
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+        <div class="card project-card">
+          <div class="project-status">Course Project</div>
+          <div class="project-title">Pig Dice Game</div>
+          <div class="project-tech">Java · Game Logic · Control Flow · GitHub</div>
+          <p>
+            A Java implementation of the classic Pig dice game focused on turn-based logic,
+            condition handling, and state management.
+          </p>
+          <div class="hero-actions" style="margin-top: 0.6rem;">
+            <a class="btn-ghost" href="https://github.com/kevinmrivera-cs/Pig-Game" target="_blank" rel="noopener noreferrer">View Repo</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <section id="certificates">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Proof of Growth</div>
+          <h2 class="section-title">Certificates</h2>
+        </div>
+        <div class="muted">
+          Certifications, competitions, and achievements that support my learning journey.
+        </div>
+      </div>
+
+      <div class="projects-grid">
+        <div class="card project-card">
+          <div class="project-status">Competition</div>
+          <div class="project-title">ICPC Autumn 2026</div>
+          <div class="project-tech">Competitive Programming · Team Problem Solving</div>
+          <p>
+            Participated in ICPC Autumn 2026 as a competitive programming experience.
+            Strengthened my problem-solving speed, teamwork, and comfort under time pressure.
+          </p>
+        </div>
+
+        <div class="card project-card">
+          <div class="project-status">Certificate</div>
+          <div class="project-title">Next Certificate (Coming Soon)</div>
+          <div class="project-tech">Placeholder</div>
+          <p>
+            This section will be updated as I earn more certificates (courses, workshops, badges, etc.).
+          </p>
+        </div>
+
+        <div class="card project-card">
+          <div class="project-status">Achievement</div>
+          <div class="project-title">More Achievements (Coming Soon)</div>
+          <div class="project-tech">Placeholder</div>
+          <p>
+            Optional space for awards, honors, or program completion recognition.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Real-World Background</div>
+          <h2 class="section-title">Experience</h2>
+        </div>
+      </div>
+
+      <div class="card">
+        <p><strong>Assistant Manager – 1915 KC House</strong> (March 2019 – Present)</p>
+        <p class="muted">Leadership · Team Management · Customer Experience · Operations</p>
+
+        <p>
+          Oversee daily operations, supervise team members, and maintain a high level of customer service.
+          Responsibilities include training, scheduling, problem-solving under pressure, inventory management,
+          and operational planning. These skills transfer directly into my CS journey through teamwork, time
+          management, and structured problem-solving.
+        </p>
+      </div>
+    </section>
+
+    <section id="resume">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Snapshot On Paper</div>
+          <h2 class="section-title">Resume</h2>
+        </div>
+      </div>
+
+      <div class="card resume-box">
+        <div>
+          <a class="btn-primary" href="Resume.pdf" target="_blank" rel="noopener noreferrer">View Resume (PDF)</a>
+        </div>
+
+        <p class="resume-note">
+          View or download my resume to see my education, skills, technical interests, and
+          my professional experience as an Assistant Manager at 1915 KC House.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Let's Connect</div>
+          <h2 class="section-title">Contact</h2>
+        </div>
+      </div>
+
+      <div class="card contact-grid">
+        <div>
+          <p><strong>Email:</strong> <a href="mailto:kevrivera2112@gmail.com">kevrivera2112@gmail.com</a></p>
+          <p class="muted">
+            Feel free to reach out regarding coursework, collaboration,
+            or future opportunities in software development, game development, or AI/ML.
+          </p>
+        </div>
+
+        <div>
+          <p><strong>Profiles:</strong></p>
+          <ul>
+            <li>
+              LinkedIn:
+              <a href="https://www.linkedin.com/in/kevin-munoz-rivera" target="_blank" rel="noopener noreferrer">
+                linkedin.com/in/kevin-munoz-rivera
+              </a>
+            </li>
+            <li>
+              GitHub:
+              <a href="https://github.com/kevinmrivera-cs" target="_blank" rel="noopener noreferrer">
+                github.com/kevinmrivera-cs
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> Kevin Munoz-Rivera · Built with HTML, CSS &amp; GitHub Pages
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
