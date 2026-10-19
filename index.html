@@ -279,9 +279,39 @@
       font-size: 0.88rem;
     }
 
-    .skills-list {
+    .skills-grid {
       display: grid;
-      gap: 0.6rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-group h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+      color: #bfdbfe;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      list-style: none;
+    }
+
+    .skill-tags li {
+      padding: 0.35rem 0.75rem;
+      border: 1px solid rgba(96, 165, 250, 0.22);
+      border-radius: 10px;
+      background: var(--accent-soft);
+      color: var(--text-main);
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 560px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .experience-list {
@@ -479,7 +509,7 @@
       <p>Computer Science Student</p>
 
       <p class="muted">
-        University of Washington Tacoma · Expected Graduation: Winter 2027
+        University of Washington Tacoma · Expected Graduation: Spring 2027
       </p>
 
       <div class="profile-wrap">
@@ -491,7 +521,7 @@
 
         <div class="profile-meta">
           <strong>Kevin Munoz-Rivera</strong>
-          <span>Java · C++ · Python · HTML/CSS · Git</span>
+          <span>Java · C++ · Python · SQL · HTML/CSS · Git</span>
           <span>B.A. Computer Science &amp; Systems</span>
         </div>
       </div>
@@ -521,7 +551,7 @@
 
       <p>
         I am continuously strengthening my understanding of object-oriented
-        programming, data structures, algorithms, testing, and version control.
+        programming, data structures, algorithms, SQL, and C++.
         Each project gives me an opportunity to improve the way I design, organize,
         and evaluate my code.
       </p>
@@ -542,23 +572,74 @@
       </div>
     </div>
 
-    <div class="card skills-list">
-      <p>
-        <strong>Languages:</strong>
-        Java, C++, JavaScript, Python, HTML/CSS
-      </p>
+    <div class="skills-grid">
+      <div class="card skill-group">
+        <h3>Languages &amp; Web</h3>
+        <ul class="skill-tags">
+          <li>Java</li>
+          <li>C++</li>
+          <li>JavaScript</li>
+          <li>Python</li>
+          <li>HTML/CSS</li>
+        </ul>
+      </div>
 
-      <p>
-        <strong>Tools:</strong>
-        Git, GitHub, IntelliJ IDEA, JUnit
-      </p>
+      <div class="card skill-group">
+        <h3>Databases</h3>
+        <ul class="skill-tags">
+          <li>SQL</li>
+        </ul>
+      </div>
 
-      <p>
-        <strong>Core Skills:</strong>
-        Object-Oriented Programming, Data Structures &amp; Algorithms, API Integration,
-        Automated Testing, Problem Solving
-      </p>
+      <div class="card skill-group">
+        <h3>Tools &amp; Testing</h3>
+        <ul class="skill-tags">
+          <li>Git</li>
+          <li>GitHub</li>
+          <li>IntelliJ IDEA</li>
+          <li>JUnit</li>
+        </ul>
+      </div>
+
+      <div class="card skill-group">
+        <h3>Core Skills</h3>
+        <ul class="skill-tags">
+          <li>Object-Oriented Programming</li>
+          <li>Data Structures &amp; Algorithms</li>
+          <li>API Integration</li>
+          <li>Automated Testing</li>
+          <li>Problem Solving</li>
+        </ul>
+      </div>
     </div>
+  </section>
+
+  <section id="education">
+    <div class="section-header">
+      <div>
+        <div class="section-kicker">Learning Through Practice</div>
+        <h2 class="section-title">Education &amp; Professional Development</h2>
+      </div>
+    </div>
+
+    <article class="card project-card">
+      <div class="project-status">In Progress</div>
+      <h3 class="project-title">Global Career Accelerator</h3>
+      <div class="project-tech">SQL · Python · Hands-On Projects</div>
+      <p>
+        Developing SQL and Python skills through hands-on, real-world projects
+        alongside my computer science studies.
+      </p>
+      <ul class="experience-list">
+        <li><strong>YouTube Trending Analysis:</strong> Used SQL to analyze video engagement, categories, and timing patterns to inform content recommendations.</li>
+        <li><strong>Crunchbase Startup Analysis:</strong> Examined startup funding, company status, and industry trends with SQL to support investment evaluation.</li>
+        <li><strong>London Transit Analysis:</strong> Analyzed 6,295 transit records with SQL to compare travel zones and commuting patterns and recommend peak-period service improvements.</li>
+      </ul>
+      <div class="hero-actions">
+        <a class="btn-ghost" href="https://www.globalcareeraccelerator.org/"
+           target="_blank" rel="noopener noreferrer">Explore the Program →</a>
+      </div>
+    </article>
   </section>
 
   <section id="projects">
@@ -878,4 +959,3 @@
 </script>
 </body>
 </html>
-
